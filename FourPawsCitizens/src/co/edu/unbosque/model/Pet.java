@@ -9,7 +9,11 @@ public class Pet {
 	private String size;
 	private Boolean potentDangerous;
 	private String neighborhood;
+	
+	
+	
 	/**
+	 * 
 	 * @return the id
 	 */
 	public String getId() {
