@@ -26,7 +26,31 @@ package co.edu.unbosque.persistence;
  
  	}
 
+ 	
+ 	public void uploadData() {
+ 		
+ 		
+ 	}
 	
+	public void assignID() {
+		
+	}
 	
+	public void findByMicrochip() {
+		
+	}
+	
+	public void countBySpecies() {
+		
+	}
+	
+	public void findBypotentDangerousInNeighborhood() {
+		
+	}
+
+	public void findByMultipleFields() {
+		
+	}
+
 	
  }
