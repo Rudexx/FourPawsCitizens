@@ -65,15 +65,7 @@ public class Archivo {
 			int contador = 0;
 			while ((row = csvReader.readLine()) != null ) {
 			    data = row.split(";");
-		    try{System.out.println(data[0]);
-		    System.out.println(data[1]);
-		    System.out.println(data[2]);
-		    System.out.println(data[3]);
-		    System.out.println(data[4]);
-		    System.out.println(data[5]);
-		    }catch(Exception e) {
-		    	
-		    }
+		   
 			    if(contador != 0) {
 			    Boolean b = false;
 			    if(data[4].equals("SI")) {

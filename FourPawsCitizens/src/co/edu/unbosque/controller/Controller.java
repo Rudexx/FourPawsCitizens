@@ -15,7 +15,11 @@ public class Controller {
 		
 		manage = new Manager();
 		p= manage.uploadData();
+		AsignarID();
 		
+		for (int i = 0; i < p.size(); i++) {
+			System.out.println(p.get(i).getId());
+		}
 	
 		
 		System.out.println("Perritos y Gatitos");
@@ -49,6 +53,7 @@ public class Controller {
      public void AsignarID() {
     	 boolean primeravez = true;
 		for(int i = 0; i < p.size(); i++) {
+
 			float chip =p.get(i).getMicrochip();
 			String especie= p.get(i).getSpecies();
 			String genero=p.get(i).getSex();
@@ -58,7 +63,7 @@ public class Controller {
 			boolean comprobador = false;
 			ArrayList<String> TodosID = new ArrayList();
 			int cn = 3;
-			while(comprobador = false) {
+			while(comprobador == false) {
 				int idchip = NumerosChip(cn, chip);
 				char idespecie = especie.charAt(0);
 				char idgenero = genero.charAt(0);
@@ -69,7 +74,9 @@ public class Controller {
 				}else {
 					idpeligroso = 'F';
 				}
+				
 				String idformado = Integer.toString(idchip) + idespecie + idgenero + idtamaño + idpeligroso + localidad;
+				System.out.println(idformado);
 				if(primeravez=true) {
 					primeravez = false;
 					comprobador = true;
@@ -84,19 +91,35 @@ public class Controller {
 					}
 					}
 				}
+				
 			}
+			
 		}
 	}
      public int NumerosChip(int cn, float microchip) {
-    	 String idchip = "";
-    	 float actual = microchip;
+    	 
+    	 
+    	 
+       	 String idchip = "";
+    	 long actual = (long)  microchip;
+    	 String micro = String.valueOf(actual);
     	 int cantidadcero = 10;
-    	 for(int i = 1; i < cn; i++) {
-    		 cantidadcero = cantidadcero*10;
-    	 }
-    		 idchip = "" + actual / cantidadcero;
-    		String[] decimalyentero = idchip.split(","); 
-    		idchip = decimalyentero[1];
+    	 
+    	 for (int i = micro.length()-cn-1; i < micro.length(); i++) {
+    		 if(i != micro.length()-1) {
+			idchip = idchip + micro.substring(i, i +1);
+    		 }else {
+    			 idchip = idchip + micro.substring(i);
+    		 }
+		}
+    	 
+ 
+		/*
+		 * for(int i = 1; i < cn; i++) { cantidadcero = cantidadcero*10; } idchip = "" +
+		 * actual / cantidadcero; System.out.println(actual + "\n" + (actual /
+		 * cantidadcero)); String[] decimalyentero = idchip.split("."); idchip =
+		 * decimalyentero[1];
+		 */
     	 return Integer.parseInt(idchip);
      }
 	
