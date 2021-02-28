@@ -17,9 +17,9 @@ public class Controller {
 		p= manage.uploadData();
 		AsignarID();
 		
-		for (int i = 0; i < p.size(); i++) {
+/*		for (int i = 0; i < p.size(); i++) {
 			System.out.println(p.get(i).getId());
-		}
+		}*/
 	
 		
 		System.out.println("Perritos y Gatitos");
@@ -53,6 +53,7 @@ public class Controller {
      public void AsignarID() {
     	 boolean primeravez = true;
 		for(int i = 0; i < p.size(); i++) {
+			System.out.println(i + " Tamaño arreglo="+p.size());
 
 			float chip =p.get(i).getMicrochip();
 			String especie= p.get(i).getSpecies();
@@ -62,31 +63,34 @@ public class Controller {
 			String localidad = p.get(i).getNeighborhood();
 			boolean comprobador = false;
 			ArrayList<String> TodosID = new ArrayList();
-			int cn = 3;
+			int cn = 2;
 			while(comprobador == false) {
 				int idchip = NumerosChip(cn, chip);
 				char idespecie = especie.charAt(0);
 				char idgenero = genero.charAt(0);
 				char idtamaño = tamaño.charAt(0);	
 				char idpeligroso = ' ';
-				if(peligroso = true) {
+				if(peligroso == true) {
 					idpeligroso = 'T';
 				}else {
 					idpeligroso = 'F';
 				}
 				
 				String idformado = Integer.toString(idchip) + idespecie + idgenero + idtamaño + idpeligroso + localidad;
-				System.out.println(idformado);
-				if(primeravez=true) {
-					primeravez = false;
+				if(primeravez==true) {
 					comprobador = true;
-				}else {
+					primeravez = false;
+					p.get(i).setId(idformado);
+					System.out.println(idformado);
+				}else if(primeravez!=true){  
 					for(int agregados = 0; agregados < TodosID.size(); agregados++) {
 					if(TodosID.get(i).equals(idformado)) {
 					agregados = TodosID.size();
+					System.out.println("Este es el if "+ TodosID.size());
 					cn++;
 					}else if(agregados == TodosID.size()-1) {
 						comprobador = true;
+						System.out.println("Este es else if");
 						p.get(i).setId(idformado);
 					}
 					}
