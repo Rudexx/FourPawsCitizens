@@ -100,7 +100,7 @@ public class Archivo {
 			
 		}
 		
-		return null;
+		return lista;
 		
 	}
 	

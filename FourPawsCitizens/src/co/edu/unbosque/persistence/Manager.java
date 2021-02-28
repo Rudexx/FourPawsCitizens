@@ -4,7 +4,9 @@ package co.edu.unbosque.persistence;
  import java.io.File;
  import java.io.IOException;
  import java.util.ArrayList;
- import co.edu.unbosque.persistence.Archivo;
+
+import co.edu.unbosque.model.Pet;
+import co.edu.unbosque.persistence.Archivo;
 
 
 
@@ -28,14 +30,14 @@ package co.edu.unbosque.persistence;
  	}
 
  	
- 	public void uploadData() {
+ 	public ArrayList<Pet> uploadData() {
  		
- 		
+ 		return a.leerArchivo();
  	}
 	
 	public void assignID() {
 		
-		a.leerArchivo();
+		
 		
 	}
 	

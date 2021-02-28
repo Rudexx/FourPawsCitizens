@@ -1,18 +1,22 @@
 package co.edu.unbosque.controller;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import co.edu.unbosque.model.Pet;
 import co.edu.unbosque.persistence.Manager;
 
 public class Controller {
 	
 	private Manager manage;
+	private ArrayList<Pet> p;
 	
 	public Controller() {
 		
 		manage = new Manager();
-		manage.assignID();
+		p= manage.uploadData();
 		
+	
 		
 		System.out.println("Perritos y Gatitos");
 		System.out.println("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
