@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-
+import co.edu.unbosque.model.EmptyAttributeException;
 import co.edu.unbosque.model.Pet;
 
 public class Archivo {
@@ -65,17 +65,20 @@ public class Archivo {
 			int contador = 0;
 			while ((row = csvReader.readLine()) != null ) {
 			    data = row.split(";");
-//			    System.out.println(data[0]);
-//			    System.out.println(data[1]);
-//			    System.out.println(data[2]);
-//			    System.out.println(data[3]);
-//			    System.out.println(data[4]);
-//			    System.out.println(data[5]);
+		    System.out.println(data[0]);
+		    System.out.println(data[1]);
+		    System.out.println(data[2]);
+		    System.out.println(data[3]);
+		    System.out.println(data[4]);
+		    System.out.println(data[5]);
 			    
 			    if(contador != 0) {
 			    Boolean b = false;
 			    if(data[4].equals("SI")) {
 			    	b = true;
+			    }
+			    if(data[5].equals("")) {
+			    	throw new EmptyAttributeException();
 			    }
 			    Long micro = Long.parseLong(data[0]);
 			    Pet p = new Pet(0, data[1], data[2], data[3], b, data[5]);
@@ -92,9 +95,11 @@ public class Archivo {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-//		}catch (EmptyAttributeException e) {
-//			
-//		}
+		}catch (EmptyAttributeException e) {
+			
+		}catch(NumberFormatException e) {
+			
+		}
 		
 		
 		return null;
