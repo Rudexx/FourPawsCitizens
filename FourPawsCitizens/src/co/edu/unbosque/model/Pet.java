@@ -11,7 +11,14 @@ public class Pet {
 	private String neighborhood;
 	
 	
-	
+	public Pet(long m, String spec,String sex, String size, Boolean potentDangerous, String neigh ) {
+		microchip = m;
+		species = spec;
+		this.sex = sex;
+		this.size = size;
+		this.potentDangerous = potentDangerous;
+		neighborhood = neigh;
+	}
 	/**
 	 * 
 	 * @return the id
