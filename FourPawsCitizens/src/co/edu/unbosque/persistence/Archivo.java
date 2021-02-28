@@ -80,10 +80,8 @@ public class Archivo {
 			    }
 			
 			    contador++;
-			    
-			    // do something with the data
+
 			}
-			System.out.println(contador + "\n" + lista.size());
 			csvReader.close();
 			
 		} catch (IOException e) {
