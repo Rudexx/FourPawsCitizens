@@ -46,4 +46,54 @@ public class Controller {
 		}
 	}
 	
+     public void AsignarID() {
+    	 boolean primeravez = true;
+		for(int i = 0; i < p.size(); i++) {
+			float chip =p.get(i).getMicrochip();
+			String especie= p.get(i).getSpecies();
+			String genero=p.get(i).getSex();
+			String tamaño = p.get(i).getSize();
+			boolean peligroso = p.get(i).getPotentDangerous();
+			String localidad = p.get(i).getNeighborhood();
+			boolean comprobador = false;
+			ArrayList<String> TodosID = new ArrayList();
+			while(comprobador = false) {
+				int cn = 3;
+				int idchip = NumerosChip(3, chip);
+				cn++;
+				char idespecie = especie.charAt(0);
+				char idgenero = genero.charAt(0);
+				char idtamaño = tamaño.charAt(0);	
+				char idpeligroso = ' ';
+				if(peligroso = true) {
+					idpeligroso = 'T';
+				}else {
+					idpeligroso = 'F';
+				}
+				String idformado = Integer.toString(idchip) + idespecie + idgenero + idtamaño + idpeligroso + localidad;
+				if(primeravez=true) {
+					primeravez = false;
+					comprobador = true;
+				}else {
+					for(int agregados = 0; agregados < TodosID.size(); agregados++) {
+					
+					}
+				}
+			}
+			
+		}
+	}
+     public int NumerosChip(int cn, float microchip) {
+    	 String idchip = "";
+    	 float actual = microchip;
+    	 int cantidadcero = 10;
+    	 for(int i = 1; i < cn; i++) {
+    		 cantidadcero = cantidadcero*10;
+    	 }
+    		 idchip = "" + actual / cantidadcero;
+    		String[] decimalyentero = idchip.split(","); 
+    		idchip = decimalyentero[1];
+    	 return Integer.parseInt(idchip);
+     }
+	
 }

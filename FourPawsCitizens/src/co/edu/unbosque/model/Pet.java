@@ -19,6 +19,7 @@ public class Pet {
 		this.potentDangerous = potentDangerous;
 		neighborhood = neigh;
 	}
+	
 	/**
 	 * 
 	 * @return the id
