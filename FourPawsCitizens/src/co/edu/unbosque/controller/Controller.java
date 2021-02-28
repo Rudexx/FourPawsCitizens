@@ -57,10 +57,9 @@ public class Controller {
 			String localidad = p.get(i).getNeighborhood();
 			boolean comprobador = false;
 			ArrayList<String> TodosID = new ArrayList();
+			int cn = 3;
 			while(comprobador = false) {
-				int cn = 3;
-				int idchip = NumerosChip(3, chip);
-				cn++;
+				int idchip = NumerosChip(cn, chip);
 				char idespecie = especie.charAt(0);
 				char idgenero = genero.charAt(0);
 				char idtamaño = tamaño.charAt(0);	
@@ -76,11 +75,16 @@ public class Controller {
 					comprobador = true;
 				}else {
 					for(int agregados = 0; agregados < TodosID.size(); agregados++) {
-					
+					if(TodosID.get(i).equals(idformado)) {
+					agregados = TodosID.size();
+					cn++;
+					}else if(agregados == TodosID.size()-1) {
+						comprobador = true;
+						p.get(i).setId(idformado);
+					}
 					}
 				}
 			}
-			
 		}
 	}
      public int NumerosChip(int cn, float microchip) {
