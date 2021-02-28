@@ -4,6 +4,7 @@ package co.edu.unbosque.persistence;
  import java.io.File;
  import java.io.IOException;
  import java.util.ArrayList;
+ import co.edu.unbosque.persistence.Archivo;
 
 
 
@@ -13,7 +14,7 @@ package co.edu.unbosque.persistence;
  
  public class Manager {
  
- 	
+	 private Archivo a;
  
  	/**
  	 * Constructor de la clase ApostadorDAO. Inicializa la clase
@@ -22,7 +23,7 @@ package co.edu.unbosque.persistence;
  	
  	
  	public Manager() {
- 		
+ 		a = new Archivo();
  
  	}
 
@@ -33,6 +34,8 @@ package co.edu.unbosque.persistence;
  	}
 	
 	public void assignID() {
+		
+		a.leerArchivo();
 		
 	}
 	

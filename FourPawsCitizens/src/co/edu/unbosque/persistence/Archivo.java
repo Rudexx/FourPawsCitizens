@@ -59,13 +59,25 @@ public class Archivo {
 			e.printStackTrace();
 		}
 		try {
+			
+			String[] data= null;
+			
 			while ((row = csvReader.readLine()) != null) {
-			    String[] data = row.split(",");
+			    data = row.split(",");
+			    System.out.println(data[0]);
+			    
+			 
 			    for (int i = 0; i < data.length; i++) {
-					System.out.println(data[i]);
+			    	System.out.println(data);
 				}
+			
+			    
+			    
 			    // do something with the data
 			}
+			
+		
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
