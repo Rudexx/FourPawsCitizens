@@ -65,43 +65,40 @@ public class Archivo {
 			int contador = 0;
 			while ((row = csvReader.readLine()) != null ) {
 			    data = row.split(";");
-		    System.out.println(data[0]);
+		    try{System.out.println(data[0]);
 		    System.out.println(data[1]);
 		    System.out.println(data[2]);
 		    System.out.println(data[3]);
 		    System.out.println(data[4]);
 		    System.out.println(data[5]);
-			    
+		    }catch(Exception e) {
+		    	
+		    }
 			    if(contador != 0) {
 			    Boolean b = false;
 			    if(data[4].equals("SI")) {
 			    	b = true;
 			    }
-			    if(data[5].equals("")) {
-			    	throw new EmptyAttributeException();
-			    }
-			    Long micro = Long.parseLong(data[0]);
-			    Pet p = new Pet(0, data[1], data[2], data[3], b, data[5]);
+			    try{Long micro = Long.parseLong(data[0]);
+			    Pet p = new Pet(micro, data[1], data[2], data[3], b, data[5]);
 			    lista.add(p);
+			    }catch(Exception e) {
+			    	
+			    }
 			    }
 			
 			    contador++;
 			    
 			    // do something with the data
 			}
-			
+			System.out.println(contador + "\n" + lista.size());
 			csvReader.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-		}catch (EmptyAttributeException e) {
-			
-		}catch(NumberFormatException e) {
-			
 		}
-		
 		
 		return null;
 		
