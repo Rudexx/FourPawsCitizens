@@ -95,6 +95,7 @@ public class Archivo {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}catch (EmptyAttributeException e) {
 			
 		}catch(NumberFormatException e) {
