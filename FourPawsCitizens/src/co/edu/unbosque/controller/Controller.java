@@ -1,86 +1,74 @@
 package co.edu.unbosque.controller;
-
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import co.edu.unbosque.model.Pet;
 import co.edu.unbosque.persistence.Manager;
+import co.edu.unbosque.view.Impresora;
 
 public class Controller {
 	
 	private Manager manage;
 	private ArrayList<Pet> p;
-	Scanner leer = new Scanner(System.in);
+	private Impresora imprimir;
 	
 	public Controller() {
-		
+		imprimir = new Impresora();
 		manage = new Manager();
 		funcionar();
 		
 	}
 	
 	public void funcionar() {
-		System.out.println("Perritos y Gatitos");
-		System.out.println("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
+		imprimir.mostrar("Perritos y Gatitos");
+		imprimir.mostrar("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
 		                   + "\n3) Buscar Animal por microchip" + "\n4) Contar animales por especie" + "\n5) Buscar Animales"
 				           + "\n6) Buscar id");
-		String opcion = leer.nextLine();
+		String opcion = imprimir.leer();
 		switch(opcion){
 		case "1":
 			p= manage.uploadData();
-			System.out.println("El proceso de carga del archivo ha finalizado");
-			System.out.println(p.get(16000).getNeighborhood());
+			imprimir.mostrar("El proceso de carga del archivo ha finalizado");
 			break;
 		case "2":
+			imprimir.mostrar("Este proceso podria tardar, por favor sea paciente");
 			manage.assignID(p);
-			System.out.println("El proceso de asignación de ids ha finalizado");
-		
-			System.out.println(p.get(22).getId());
-			System.out.println(p.get(53).getId());
-			
+			imprimir.mostrar("El proceso de asignación de ids ha finalizado");
 			break;
 		case "3":
-			System.out.println("Digite el microchip buscado");
-			String animalbuscado= leer.nextLine();
+			imprimir.mostrar("Digite el microchip buscado");
+			String animalbuscado= imprimir.leer();
 			try{String animal = manage.findByMicrochip(p, animalbuscado).toString();
-			System.out.println(animal.toString());
+			imprimir.mostrar(animal.toString());
 			}catch(NullPointerException e) {
-				System.out.println(e.getMessage());
+				imprimir.mostrar(e.getMessage());
 			}
 			break;
 		case "4":
-			System.out.println("Escriba la especie a buscar:");
-			String especiebuscar = leer.nextLine();
+			imprimir.mostrar("Escriba la especie a buscar:");
+			String especiebuscar = imprimir.leer();
 			int cantidadespecies= manage.countBySpecies(especiebuscar, p);
-			System.out.println("El número de animales de la especie " + especiebuscar + " es: " + cantidadespecies );
+			imprimir.mostrar("El número de animales de la especie " + especiebuscar + " es: " + cantidadespecies );
 			break;
 		case "5":
-			System.out.println("Digite la cantidad de animales buscados: ");
-			int cantidadanimales = Integer.parseInt(leer());
-			System.out.println(cantidadanimales);
-			System.out.println("¿Quiere contar desde arriba o abajo?");
-			String posicion = leer();
-			System.out.println(posicion);
-			System.out.println("Digite la localidad deseada:");
-			String localidad = leer();
-			System.out.println(localidad);
+			imprimir.mostrar("Digite la cantidad de animales buscados: ");
+			int cantidadanimales = Integer.parseInt(imprimir.leer());
+			imprimir.mostrar("¿Quiere contar desde arriba o abajo?");
+			String posicion = imprimir.leer();
+			imprimir.mostrar("Digite la localidad deseada:");
+			String localidad = imprimir.leer();
 			String encontrados = manage.findBypotentDangerousInNeighborhood(cantidadanimales, posicion, localidad, p);
-			
-			
-			
-			System.out.println(encontrados);
+			imprimir.mostrar(encontrados);
 			break;
 		case "6":
-			System.out.println("Digite el sexo del animal buscado:");
-			String sexo = leer();
-			System.out.println("Digite la especie del animal buscado:");
-			String especie = leer();
-			System.out.println("Digite el tamaño del animal buscado:");
-			String tamaño = leer();
-			System.out.println("¿El animal que busca es peligroso?");
-			String peligro = leer();
+			imprimir.mostrar("Digite el sexo del animal buscado:");
+			String sexo = imprimir.leer();
+			imprimir.mostrar("Digite la especie del animal buscado:");
+			String especie = imprimir.leer();
+			imprimir.mostrar("Digite el tamaño del animal buscado:");
+			String tamaño = imprimir.leer();
+			imprimir.mostrar("¿El animal que busca es peligroso?");
+			String peligro = imprimir.leer();
 			String ids = buscarids(sexo,especie,tamaño,peligro,p);
-			System.out.println("Los ID encontrados son: \n" + ids );
+			imprimir.mostrar("Los ID encontrados son: \n" + ids );
 			break;
 		}
 		funcionar();
@@ -100,7 +88,6 @@ public class Controller {
 						peligro = false;
 						}
 						if(p.get(comienza).getPotentDangerous() == peligro) {
-							System.out.println(comienza);
 							ids = ids + "\n" + p.get(comienza).getId();
 						}
 					}
@@ -109,10 +96,6 @@ public class Controller {
 			}
 		}
 		return ids;
-	}
-	public String leer() {
-		String leido = leer.nextLine();
-		return leido;
 	}
 	
 }

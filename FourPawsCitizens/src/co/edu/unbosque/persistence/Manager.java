@@ -4,6 +4,7 @@ package co.edu.unbosque.persistence;
  import java.io.File;
  import java.io.IOException;
  import java.util.ArrayList;
+import java.util.Random;
 
 import co.edu.unbosque.model.Pet;
 import co.edu.unbosque.persistence.Archivo;
@@ -56,7 +57,6 @@ import co.edu.unbosque.persistence.Archivo;
  	
 	
 	public void assignID(ArrayList<Pet> p) {
-		
 		boolean primeravez = true;
 		 ArrayList<String> TodosID = new ArrayList<String>();
 		for(int i = 0; i < p.size(); i++) {
@@ -67,9 +67,16 @@ import co.edu.unbosque.persistence.Archivo;
 			boolean peligroso = p.get(i).getPotentDangerous();
 			String localidad = p.get(i).getNeighborhood();
 			boolean comprobador = false;
-			int cn = 2;
+			int cn = 3;
 			while(comprobador == false) {
-				int idchip = NumerosChip(cn, chip);
+				long idchip = 0;
+				if(cn >= 15) {
+				Random nrandom = new Random();
+				long aleatorio = 99 + nrandom.nextInt(9999);
+				idchip = aleatorio;
+				}else {
+				idchip = NumerosChip(cn, chip);
+				}
 				char idespecie = especie.charAt(0);
 				char idgenero = genero.charAt(0);
 				char idtamaño = tamaño.charAt(0);	
@@ -79,7 +86,7 @@ import co.edu.unbosque.persistence.Archivo;
 				}else {
 					idpeligroso = 'F';
 				}
-				String idformado = Integer.toString(idchip) + " --- " + idespecie + idgenero + idtamaño + idpeligroso+ " --- " + localidad;
+				String idformado = idchip + " --- " + idespecie + idgenero + idtamaño + idpeligroso+ " --- " + localidad;
 				if(primeravez==true) {
 					comprobador = true;
 					primeravez = false;
@@ -88,16 +95,17 @@ import co.edu.unbosque.persistence.Archivo;
 				}else if(primeravez!=true){
 					int agregados = 0;
 					for(agregados = 0; agregados < TodosID.size(); agregados++) {
-					if(TodosID.get(agregados).equals(idformado)) {
+					if(TodosID.get(agregados).equalsIgnoreCase(idformado)) {
+			/*		System.out.println(TodosID.get(agregados) + " Es igual a " + idformado);*/
 					agregados = TodosID.size();
 					cn++;
 					}else if(agregados == TodosID.size()-1) {
 						comprobador = true;
 						p.get(i).setId(idformado);
+						TodosID.add(idformado);
 					}
 					}
 				}
-				
 			}
 			
 		}
@@ -133,18 +141,19 @@ import co.edu.unbosque.persistence.Archivo;
  	 * @return variable de tipo int con los digitos que deben ser usados en la creacion del id de la mascota
  	 */
 	
-	  public int NumerosChip(int cn, float microchip) {  	 
+	  public long NumerosChip(int cn, float microchip) {  	 
 	       	 String idchip = "";
 	    	 long actual = (long)  microchip;
-	    	 String micro = String.valueOf(actual);  	 
-	    	 for (int i = micro.length()-cn-1; i < micro.length(); i++) {
-	    		 if(i != micro.length()-1) {
+	    	 String micro = String.valueOf(actual);
+	    	 for (int i = micro.length()-cn; i < micro.length(); i++) {
+	    	  if(i != micro.length()-1) {
 				idchip = idchip + micro.substring(i, i +1);
 	    		 }else {
 	    			 idchip = idchip + micro.substring(i);
 	    		 }
 			}
-	    	 return Integer.parseInt(idchip);
+	   
+	    	 return Long.parseLong(idchip);
 	     }
 	
 	  /**
