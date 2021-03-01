@@ -101,13 +101,53 @@ import co.edu.unbosque.persistence.Archivo;
 	    	 return Integer.parseInt(idchip);
 	     }
 	
-	public void countBySpecies() {
+	public int countBySpecies(String specie, ArrayList<Pet> p) {
+		int contador = 0;
+		for (int i = 0; i < p.size(); i++) {
+			if(p.get(i).getSpecies() == specie) {
+				contador++;
+			}
+		}
+		return contador;
+		
+		
 		
 	}
 	
-	public void findBypotentDangerousInNeighborhood() {
+	public ArrayList<Pet> findBypotentDangerousInNeighborhood(int n , String position, 
+			String neighbourhood, ArrayList<Pet> p ) {
+		int encontrados = 0;
+		ArrayList<Pet> mascotas = new ArrayList<Pet>();
+		if(position.equals("TOP")) {
+			
+			
+			for (int i = 0; i < p.size(); i++) {
+				
+				if(p.get(i).getPotentDangerous() == true && encontrados != n) {
+					mascotas.add(p.get(i));
+					encontrados++;
+				}else {
+					i = p.size();
+				}
+			}
+			
+		}else {
+			for (int i = p.size(); i >= 0 ; i--) {
+
+				if(p.get(i).getPotentDangerous() == true && encontrados != n) {
+					mascotas.add(p.get(i));
+					encontrados++;
+				}else {
+					i = -1;
+				}
+			}
+			
+		}
+		return mascotas;
 		
 	}
+	
+
 
 	public void findByMultipleFields() {
 		
