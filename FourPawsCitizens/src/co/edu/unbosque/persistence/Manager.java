@@ -58,7 +58,7 @@ import co.edu.unbosque.persistence.Archivo;
 	public void assignID(ArrayList<Pet> p) {
 		
 		boolean primeravez = true;
-		 ArrayList<String> TodosID = new ArrayList();
+		 ArrayList<String> TodosID = new ArrayList<String>();
 		for(int i = 0; i < p.size(); i++) {
 			float chip =p.get(i).getMicrochip();
 			String especie= p.get(i).getSpecies();
