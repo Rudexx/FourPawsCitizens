@@ -114,7 +114,7 @@ import co.edu.unbosque.persistence.Archivo;
 		
 	}
 	
-	public ArrayList<Pet> findBypotentDangerousInNeighborhood(int n , String position, 
+	public String findBypotentDangerousInNeighborhood(int n , String position, 
 			String neighbourhood, ArrayList<Pet> p ) {
 		int encontrados = 0;
 		ArrayList<Pet> mascotas = new ArrayList<Pet>();
@@ -141,9 +141,15 @@ import co.edu.unbosque.persistence.Archivo;
 					i = -1;
 				}
 			}
-			
 		}
-		return mascotas;
+		String resultado = "";
+		for (int i = 0; i < mascotas.size(); i++) {
+			resultado = resultado + "\n" + mascotas.get(i);
+		}
+		
+		
+		
+		return resultado;
 		
 	}
 	
