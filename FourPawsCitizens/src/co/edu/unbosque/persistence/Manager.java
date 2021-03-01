@@ -118,7 +118,7 @@ import co.edu.unbosque.persistence.Archivo;
 			String neighbourhood, ArrayList<Pet> p ) {
 		int encontrados = 0;
 		ArrayList<Pet> mascotas = new ArrayList<Pet>();
-		if(position.equals("TOP")) {
+		if(position.equalsIgnoreCase("TOP")) {
 			
 			
 			for (int i = 0; i < p.size(); i++) {

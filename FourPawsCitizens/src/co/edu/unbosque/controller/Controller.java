@@ -10,6 +10,7 @@ public class Controller {
 	
 	private Manager manage;
 	private ArrayList<Pet> p;
+	Scanner leer = new Scanner(System.in);
 	
 	public Controller() {
 		
@@ -23,7 +24,6 @@ public class Controller {
 		System.out.println("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
 		                   + "\n3) Buscar Animal por microchip" + "\n4) Contar animales por especie" + "\n5) Buscar Animales"
 				           + "\n6) Buscar id");
-		Scanner leer = new Scanner(System.in);
 		String opcion = leer.nextLine();
 		switch(opcion){
 		case "1":
@@ -51,27 +51,26 @@ public class Controller {
 			break;
 		case "5":
 			System.out.println("Digite la cantidad de animales buscados: ");
-			int cantidadanimales = leer.nextInt();
+			int cantidadanimales = Integer.parseInt(leer());
+			System.out.println(cantidadanimales);
 			System.out.println("¿Quiere contar desde arriba o abajo?");
-			String posicion = leer.nextLine();
+			String posicion = leer();
+			System.out.println(posicion);
 			System.out.println("Digite la localidad deseada:");
-			String localidad = leer.nextLine();
-			ArrayList<Pet> encontrados = manage.findBypotentDangerousInNeighborhood(cantidadanimales, posicion, localidad, p);
+			String localidad = leer();
+			System.out.println(localidad);
+			String encontrados = manage.findBypotentDangerousInNeighborhood(cantidadanimales, posicion, localidad, p);
+			System.out.println(encontrados + "Hola");
 			break;
 		case "6":
 			
 			break;
 		}
-		leer.nextLine();
-		System.out.println("¿Desea relizar otra consulta?");
-		String volver = leer.nextLine();
-		try{if(volver.equals("Si")) {
-			funcionar();
-		}else {
-			System.out.println("Que tenga un buen dia");
-		}}catch(Exception e) {
-			System.out.println("Que tenga un buen dia");
-		}
+		funcionar();
+	}
+	public String leer() {
+		String leido = leer.next();
+		return leido;
 	}
 	public Pet buscarmicrochip(ArrayList<Pet> mascotas, String buscado) {
 		for(int buscando = 0; buscando < mascotas.size(); buscando++) {
