@@ -44,10 +44,19 @@ public class Controller {
 			}
 			break;
 		case "4":
-			
+			System.out.println("Escriba la especie a buscar:");
+			String especiebuscar = leer.nextLine();
+			int cantidadespecies= manage.countBySpecies(especiebuscar, p);
+			System.out.println("El número de animales de la especie " + especiebuscar + " es: " + cantidadespecies );
 			break;
 		case "5":
-			
+			System.out.println("Digite la cantidad de animales buscados: ");
+			int cantidadanimales = leer.nextInt();
+			System.out.println("¿Quiere contar desde arriba o abajo?");
+			String posicion = leer.nextLine();
+			System.out.println("Digite la localidad deseada:");
+			String localidad = leer.nextLine();
+			ArrayList<Pet> encontrados = manage.findBypotentDangerousInNeighborhood(cantidadanimales, posicion, localidad, p);
 			break;
 		case "6":
 			
