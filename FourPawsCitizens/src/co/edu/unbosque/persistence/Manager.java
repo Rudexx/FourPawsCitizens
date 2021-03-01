@@ -59,7 +59,7 @@ import co.edu.unbosque.persistence.Archivo;
 				}else {
 					idpeligroso = 'F';
 				}
-				String idformado = Integer.toString(idchip) + idespecie + idgenero + idtamaño + idpeligroso + localidad;
+				String idformado = Integer.toString(idchip) + " --- " + idespecie + idgenero + idtamaño + idpeligroso+ " --- " + localidad;
 				if(primeravez==true) {
 					comprobador = true;
 					primeravez = false;
@@ -84,7 +84,16 @@ import co.edu.unbosque.persistence.Archivo;
 		
 	}
 	
-	public void findByMicrochip() {
+	public Pet findByMicrochip(ArrayList<Pet> mascotas, String buscado) {
+		
+		for(int buscando = 0; buscando < mascotas.size(); buscando++) {
+			String chipreal = String.valueOf(mascotas.get(buscando).getMicrochip());
+			if(buscado.equals(chipreal)) {
+				return mascotas.get(buscando);
+			}
+		}
+		return null;
+		
 		
 	}
 	  public int NumerosChip(int cn, float microchip) {  	 
@@ -122,23 +131,27 @@ import co.edu.unbosque.persistence.Archivo;
 			
 			
 			for (int i = 0; i < p.size(); i++) {
-				
-				if(p.get(i).getPotentDangerous() == true && encontrados != n) {
+
+				if(p.get(i).getPotentDangerous() == true && encontrados != n && p.get(i).getNeighborhood().equalsIgnoreCase(neighbourhood)) {
 					mascotas.add(p.get(i));
-					encontrados++;
-				}else {
+					encontrados = encontrados + 1;
+
+				}else if(n == encontrados) {
 					i = p.size();
+
 				}
 			}
 			
-		}else {
-			for (int i = p.size(); i >= 0 ; i--) {
+		}else if (position.equalsIgnoreCase("LAST")){
+			for (int i = p.size()-1; i >= 0 ; i--) {
 
-				if(p.get(i).getPotentDangerous() == true && encontrados != n) {
+				if(p.get(i).getPotentDangerous() == true && encontrados != n && p.get(i).getNeighborhood().equalsIgnoreCase(neighbourhood)) {
 					mascotas.add(p.get(i));
-					encontrados++;
-				}else {
+					encontrados = encontrados + 1;
+				}else if(n == encontrados) {
 					i = -1;
+				}else {
+					
 				}
 			}
 		}
@@ -147,8 +160,11 @@ import co.edu.unbosque.persistence.Archivo;
 			resultado = resultado + "\n" + mascotas.get(i);
 		}
 		
+		if(resultado.equals("")) {
+			resultado = "No se encontró ninguna mascota con esa localidad";
+		}
 		
-		
+
 		return resultado;
 		
 	}
@@ -156,6 +172,9 @@ import co.edu.unbosque.persistence.Archivo;
 
 
 	public void findByMultipleFields() {
+		
+		
+		
 		
 	}
 

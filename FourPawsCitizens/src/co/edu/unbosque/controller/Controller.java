@@ -29,6 +29,7 @@ public class Controller {
 		case "1":
 			p= manage.uploadData();
 			System.out.println("El proceso de carga del archivo ha finalizado");
+			System.out.println(p.get(16000).getNeighborhood());
 			break;
 		case "2":
 			manage.assignID(p);
@@ -37,7 +38,7 @@ public class Controller {
 		case "3":
 			System.out.println("Digite el microchip buscado");
 			String animalbuscado= leer.nextLine();
-			try{String animal = buscarmicrochip(p, animalbuscado).toString();
+			try{String animal = manage.findByMicrochip(p, animalbuscado).toString();
 			System.out.println(animal.toString());
 			}catch(NullPointerException e) {
 				System.out.println(e.getMessage());
@@ -60,7 +61,10 @@ public class Controller {
 			String localidad = leer();
 			System.out.println(localidad);
 			String encontrados = manage.findBypotentDangerousInNeighborhood(cantidadanimales, posicion, localidad, p);
-			System.out.println(encontrados + "Hola");
+			
+			
+			
+			System.out.println(encontrados);
 			break;
 		case "6":
 			
@@ -69,16 +73,8 @@ public class Controller {
 		funcionar();
 	}
 	public String leer() {
-		String leido = leer.next();
+		String leido = leer.nextLine();
 		return leido;
 	}
-	public Pet buscarmicrochip(ArrayList<Pet> mascotas, String buscado) {
-		for(int buscando = 0; buscando < mascotas.size(); buscando++) {
-			String chipreal = String.valueOf(mascotas.get(buscando).getMicrochip());
-			if(buscado.equals(chipreal)) {
-				return mascotas.get(buscando);
-			}
-		}
-		return null;
-	}
+	
 }
