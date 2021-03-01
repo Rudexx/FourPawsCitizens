@@ -15,8 +15,11 @@ public class Controller {
 		
 		manage = new Manager();
 		p= manage.uploadData();
-		manage.assignID(p);
+		funcionar();
 		
+	}
+	
+	public void funcionar() {
 		System.out.println("Perritos y Gatitos");
 		System.out.println("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
 		                   + "\n3) Buscar Animal por microchip" + "\n4) Contar animales por especie" + "\n5) Buscar Animales"
@@ -31,7 +34,13 @@ public class Controller {
 			
 			break;
 		case "3":
-			
+			System.out.println("Digite el microchip buscado");
+			String animalbuscado= leer.nextLine();
+			try{String animal = buscarmicrochip(p, animalbuscado).toString();
+			System.out.println(animal.toString());
+			}catch(NullPointerException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
 		case "4":
 			
@@ -43,9 +52,24 @@ public class Controller {
 			
 			break;
 		}
+		leer.nextLine();
+		System.out.println("¿Desea relizar otra consulta?");
+		String volver = leer.nextLine();
+		try{if(volver.equals("Si")) {
+			funcionar();
+		}else {
+			System.out.println("Que tenga un buen dia");
+		}}catch(Exception e) {
+			System.out.println("Que tenga un buen dia");
+		}
 	}
-	
-  
-   
-	
+	public Pet buscarmicrochip(ArrayList<Pet> mascotas, String buscado) {
+		for(int buscando = 0; buscando < mascotas.size(); buscando++) {
+			String chipreal = String.valueOf(mascotas.get(buscando).getMicrochip());
+			if(buscado.equals(chipreal)) {
+				return mascotas.get(buscando);
+			}
+		}
+		return null;
+	}
 }
