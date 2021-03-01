@@ -10,40 +10,30 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import co.edu.unbosque.model.EmptyAttributeException;
+
 import co.edu.unbosque.model.Pet;
 
 public class Archivo {
 
-	
-	private ObjectInputStream entrada;
-	private ObjectOutputStream salida;
-	private File f;
+
+
 
 	/**
 	 * Constructor de la clase Archivo. Inicializa la clase
 	 */
 	
-	
-
-	
-	
-	/**
-	 * metodo de escritura de archivos, en este caso binarios
-	 * <b>pre</b> se ha inicializado la clase archivo<br>
-	 * <b>post</b> se guardó el valor solicitado en el archivo correctamente <br>
-	 * @param Apostador: una lista de Apostadores a guardar
-	 */
-	
-
-	public void escribirArchivo() {
+	public Archivo () {
+		
 	}
 
+	
+	
+
 	/**
-	 * metodo de lectura de archivos, en este caso binarios
+	 * metodo de lectura de archivos, en este caso de tipo csv
 	 * <b>pre</b> se ha inicializado la clase archivo<br>
-	 * <b>post</b> se retorno el valor solicitado del archivo correctamente <br>
-	 * @return una lista con todos los Apostadors
+	 * <b>post</b> se retorno la lista de mascotas correctamente <br>
+	 * @return una lista con todos las mascotas
 	 */
 	
 	

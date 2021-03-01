@@ -86,12 +86,16 @@ import co.edu.unbosque.persistence.Archivo;
 					p.get(i).setId(idformado);
 					TodosID.add(idformado);
 				}else if(primeravez!=true){
-					int agregados = 0;
-					for(agregados = 0; agregados < TodosID.size(); agregados++) {
-					if(TodosID.get(agregados).equals(idformado)) {
-					agregados = TodosID.size();
+					
+					for(int j = 0; j < TodosID.size(); j++) {
+						System.out.println(TodosID.size());
+		
+						
+					if(TodosID.contains(idformado)) {
+						System.out.println("ha ha");
+					j = TodosID.size();
 					cn++;
-					}else if(agregados == TodosID.size()-1) {
+					}else if(j == TodosID.size()-1) {
 						comprobador = true;
 						p.get(i).setId(idformado);
 					}
@@ -102,6 +106,19 @@ import co.edu.unbosque.persistence.Archivo;
 			
 		}
 		
+	}
+	
+	public boolean recorrer(ArrayList<String> s, String comparar) {
+		
+		
+		for (int i = 0; i < s.size(); i++) {
+			if(s.get(i).equalsIgnoreCase(comparar)) {
+				return true;
+			}
+		}
+		
+		
+		return false;
 	}
 	
 	/**
