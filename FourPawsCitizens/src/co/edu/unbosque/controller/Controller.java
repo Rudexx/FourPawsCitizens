@@ -67,10 +67,43 @@ public class Controller {
 			System.out.println(encontrados);
 			break;
 		case "6":
-			
+			System.out.println("Digite el sexo del animal buscado:");
+			String sexo = leer();
+			System.out.println("Digite la especie del animal buscado:");
+			String especie = leer();
+			System.out.println("Digite el tamaño del animal buscado:");
+			String tamaño = leer();
+			System.out.println("¿El animal que busca es peligroso?");
+			String peligro = leer();
+			String ids = buscarids(sexo,especie,tamaño,peligro,p);
+			System.out.println("Los ID encontrados son: \n" + ids );
 			break;
 		}
 		funcionar();
+	}
+	
+	public String buscarids(String sex, String species,String tamaño, String Peligroso, ArrayList<Pet> p) {
+		String ids = "";
+		
+		for(int comienza = 0; comienza < p.size(); comienza++) {
+			boolean peligro = false;
+			if(p.get(comienza).getSpecies().equalsIgnoreCase(species)) {
+				if(p.get(comienza).getSex().equalsIgnoreCase(sex)) {
+					if(p.get(comienza).getSize().equalsIgnoreCase(tamaño)) {
+						if(Peligroso.equalsIgnoreCase("Si")) {
+						peligro = true;
+						}else {
+						peligro = false;
+						}
+						if(p.get(comienza).getPotentDangerous() == peligro) {
+							ids = ids + "\n" + p.get(comienza).getId();
+						}
+					}
+					
+				}
+			}
+		}
+		return ids;
 	}
 	public String leer() {
 		String leido = leer.nextLine();
