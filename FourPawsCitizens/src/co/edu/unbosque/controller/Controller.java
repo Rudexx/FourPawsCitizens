@@ -10,13 +10,18 @@ public class Controller {
 	private ArrayList<Pet> p;
 	private Impresora imprimir;
 	
+	/**
+	 * Este metodo es el constructor de la clase
+	 */	
 	public Controller() {
 		imprimir = new Impresora();
 		manage = new Manager();
 		funcionar();
 		
 	}
-	
+	/**
+	 * Este metodo ejecuta todo lo relevante con el programa
+	 */	
 	public void funcionar() {
 		imprimir.mostrar("Perritos y Gatitos");
 		imprimir.mostrar("Seleccione la operacion a realizar:" + "\n1) Cargar Archivo CSV" + "\n2) Asignar id a los animales" 
