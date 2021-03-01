@@ -28,6 +28,8 @@ public class Controller {
 		                   + "\n3) Buscar Animal por microchip" + "\n4) Contar animales por especie" + "\n5) Buscar Animales"
 				           + "\n6) Buscar id");
 		String opcion = imprimir.leer();
+		
+		try {
 		switch(opcion){
 		case "1":
 			p= manage.uploadData();
@@ -72,35 +74,17 @@ public class Controller {
 			String tamaño = imprimir.leer();
 			imprimir.mostrar("¿El animal que busca es peligroso?");
 			String peligro = imprimir.leer();
-			String ids = buscarids(sexo,especie,tamaño,peligro,p);
+			String ids = manage.findByMultipleFields(sexo,especie,tamaño,peligro,p);
 			imprimir.mostrar("Los ID encontrados son: \n" + ids );
 			break;
+		}
+		}catch(NullPointerException e ) {
+			imprimir.mostrar("Error: no se ha leido el archivo csv");
+			funcionar();
 		}
 		funcionar();
 	}
 	
-	public String buscarids(String sex, String species,String tamaño, String Peligroso, ArrayList<Pet> p) {
-		String ids = "";
-		
-		for(int comienza = 0; comienza < p.size(); comienza++) {
-			boolean peligro = false;
-			if(p.get(comienza).getSpecies().equalsIgnoreCase(species)) {
-				if(p.get(comienza).getSex().equalsIgnoreCase(sex)) {
-					if(p.get(comienza).getSize().equalsIgnoreCase(tamaño)) {
-						if(Peligroso.equalsIgnoreCase("Si")) {
-						peligro = true;
-						}else {
-						peligro = false;
-						}
-						if(p.get(comienza).getPotentDangerous() == peligro) {
-							ids = ids + "\n" + p.get(comienza).getId();
-						}
-					}
-					
-				}
-			}
-		}
-		return ids;
-	}
+
 	
 }

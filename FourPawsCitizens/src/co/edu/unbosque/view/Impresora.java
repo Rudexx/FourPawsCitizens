@@ -21,7 +21,7 @@ public class Impresora {
 	}
 	/**
 	 * Este metodo permite mostrar informacion al usuario
-	 * @param Se le debe enviar lo que se le quiere decir al usuario
+	 * @param mostrar: Se le debe enviar lo que se le quiere decir al usuario
 	*/	
 	public void mostrar(String mostrar) {
 		System.out.println(mostrar);
