@@ -104,7 +104,7 @@ import co.edu.unbosque.persistence.Archivo;
 	public int countBySpecies(String specie, ArrayList<Pet> p) {
 		int contador = 0;
 		for (int i = 0; i < p.size(); i++) {
-			if(p.get(i).getSpecies() == specie) {
+			if(p.get(i).getSpecies().equalsIgnoreCase(specie)) {
 				contador++;
 			}
 		}
