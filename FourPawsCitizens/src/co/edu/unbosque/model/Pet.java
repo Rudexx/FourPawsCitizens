@@ -12,6 +12,7 @@ public class Pet {
 	
 	
 	public Pet(long m, String spec,String sex, String size, Boolean potentDangerous, String neigh ) {
+		id = "N0-ID";
 		microchip = m;
 		species = spec;
 		this.sex = sex;
@@ -104,6 +105,15 @@ public class Pet {
 	 */
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ID: " + id  + "\nSpecies: " + species + "\nSex: " + sex + "\nSize: " + size
+				+ "\nPotentDangerous: " + potentDangerous + "\nNeighborhood: " + neighborhood ;
 	}
 	
 	
