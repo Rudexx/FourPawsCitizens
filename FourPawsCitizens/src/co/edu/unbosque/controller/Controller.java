@@ -34,6 +34,10 @@ public class Controller {
 		case "2":
 			manage.assignID(p);
 			System.out.println("El proceso de asignación de ids ha finalizado");
+		
+			System.out.println(p.get(22).getId());
+			System.out.println(p.get(53).getId());
+			
 			break;
 		case "3":
 			System.out.println("Digite el microchip buscado");
@@ -96,6 +100,7 @@ public class Controller {
 						peligro = false;
 						}
 						if(p.get(comienza).getPotentDangerous() == peligro) {
+							System.out.println(comienza);
 							ids = ids + "\n" + p.get(comienza).getId();
 						}
 					}
