@@ -14,7 +14,6 @@ public class Controller {
 	public Controller() {
 		
 		manage = new Manager();
-		p= manage.uploadData();
 		funcionar();
 		
 	}
@@ -28,10 +27,12 @@ public class Controller {
 		String opcion = leer.nextLine();
 		switch(opcion){
 		case "1":
-			
+			p= manage.uploadData();
+			System.out.println("El proceso de carga del archivo ha finalizado");
 			break;
 		case "2":
-			
+			manage.assignID(p);
+			System.out.println("El proceso de asignación de ids ha finalizado");
 			break;
 		case "3":
 			System.out.println("Digite el microchip buscado");
