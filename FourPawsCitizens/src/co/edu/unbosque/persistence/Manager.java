@@ -19,7 +19,7 @@ import co.edu.unbosque.persistence.Archivo;
 	 private Archivo a;
  
  	/**
- 	 * Constructor de la clase ApostadorDAO. Inicializa la clase
+ 	 * Constructor de la clase Manager. Inicializa la clase
  	 * 
  	 */
  	
@@ -28,12 +28,32 @@ import co.edu.unbosque.persistence.Archivo;
  		a = new Archivo();
  
  	}
+ 	
+ 	/**
+ 	 * Carga el archivo csv contenedor de todos los animales
+ 	 * * <b>pre</b> se ha inicializado la clase Manager<br>
+ 	 * <b>post</b> se cargó correctamente el archivo csv <br>
+ 	 * @return una lista de mascotas leida del archivo csv
+ 	 * 
+ 	 */
 
  	
  	public ArrayList<Pet> uploadData() {
  		
  		return a.leerArchivo();
  	}
+ 	
+ 	
+ 	/**
+ 	 * asigna Id's a cada uno de los animales de la lista
+ 	 *  * <b>pre</b> se ha inicializado la clase Manager<br>
+ 	 * <b>post</b> se asigno correctamente cada una de las id <br>
+ 	 * @param p: lista contenedora de cada mascota
+ 	 * 
+ 	 * 
+ 	 */
+ 	
+ 	
 	
 	public void assignID(ArrayList<Pet> p) {
 		
@@ -84,6 +104,15 @@ import co.edu.unbosque.persistence.Archivo;
 		
 	}
 	
+	/**
+ 	 * busca una mascota segun su microchip
+ 	 *  * <b>pre</b> se ha inicializado la clase Manager<br>
+ 	 * <b>post</b> se devolvio la mascota encontrada <br>
+ 	 * @param mascotas: lista contenedora de las mascotas
+ 	 * @param buscado: microchip de la mascota buscada
+ 	 * @return objeto de tipo pet (Mascota que fue buscada)
+ 	 */
+	
 	public Pet findByMicrochip(ArrayList<Pet> mascotas, String buscado) {
 		
 		for(int buscando = 0; buscando < mascotas.size(); buscando++) {
@@ -93,9 +122,17 @@ import co.edu.unbosque.persistence.Archivo;
 			}
 		}
 		return null;
-		
-		
 	}
+	
+	/**
+ 	 * Metodo que recopila los digitos del microchip de la mascota que deben ser usados en su id
+ 	 *  * <b>pre</b> se ha inicializado la clase Manager<br>
+ 	 * <b>post</b> se devolvieron los digitos correctamente <br>
+ 	 * @param cn: Numero de digitos que van a ser tomados
+ 	 * @param microchip: microchip de la mascota
+ 	 * @return variable de tipo int con los digitos que deben ser usados en la creacion del id de la mascota
+ 	 */
+	
 	  public int NumerosChip(int cn, float microchip) {  	 
 	       	 String idchip = "";
 	    	 long actual = (long)  microchip;
@@ -110,6 +147,17 @@ import co.edu.unbosque.persistence.Archivo;
 	    	 return Integer.parseInt(idchip);
 	     }
 	
+	  /**
+	 	 * Cuenta la cantidad de mascotas por especies y devuelve un valor int 
+	 	 *  * <b>pre</b> se ha inicializado la clase Manager<br>
+	 	 * <b>post</b> se devolvio el numero de mascotas correctamente <br>
+	 	 * @param specie: specie de la mascota
+	 	 * @param p: lista de mascotas
+	 	 * @return variable de tipo int con la cantidad de mascotas por la especie
+	 	 */
+	  
+	  
+	  
 	public int countBySpecies(String specie, ArrayList<Pet> p) {
 		int contador = 0;
 		for (int i = 0; i < p.size(); i++) {
@@ -118,10 +166,17 @@ import co.edu.unbosque.persistence.Archivo;
 			}
 		}
 		return contador;
-		
-		
-		
 	}
+	
+	/**
+ 	 * Encuentra la cantidad de mascotas potencialmente peligrosas de una
+ 	 *  localidad tomando en cuenta los n ultimos o n primeros
+ 	 *  * <b>pre</b> se ha inicializado la clase Manager<br>
+ 	 * <b>post</b> se devolvio la lista de mascotas que cumplen las condiciones especificadas <br>
+ 	 * @param n: numero de mascotas que van a ser buscadas
+ 	 * @param position: especifica si deben ser los n ultimos o n primeros
+ 	 * @return un String con los datos de todas las mascotas encontradas
+ 	 */
 	
 	public String findBypotentDangerousInNeighborhood(int n , String position, 
 			String neighbourhood, ArrayList<Pet> p ) {
